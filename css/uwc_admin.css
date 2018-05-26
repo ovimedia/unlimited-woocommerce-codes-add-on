@@ -1,0 +1,29 @@
+.meta_div_codes,
+.meta_div_codes select,
+.meta_div_codes p,
+.meta_div_codes input[type="number"],
+.meta_div_codes input[type="text"] {
+    width: 100%;
+}
+
+.meta_div_codes p {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.meta_div_codes p label {
+    font-weight: bold;
+}
+
+.meta_div_codes p select {
+    margin: 3px 0px 15px 0px;
+}
+
+.select2-selection--multiple .select2-search {
+    width: 0px !important;
+}
+
+.select2-results__group {
+    background-color: rgb(44, 130, 196);
+    color: #fff;
+}
