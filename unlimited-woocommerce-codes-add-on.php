@@ -6,6 +6,7 @@ Author: Ovi García - ovimedia.es
 Author URI: http://www.ovimedia.es/
 Text Domain: unlimited-woocommerce-codes
 Version: 0.1
+Plugin URI: https://github.com/ovimedia/unlimited-woocommerce-codes-add-on
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; 
@@ -69,11 +70,12 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
                             if(in_array($term->term_id, $product_cats)) $load = true; 
                         }
 
+                        if(in_array(0, $product_cats)) $load = true;
+
                         if($this->check_wpml_languages($codeid))
-                            if( ($load || in_array($post->ID, $posts_id) || in_array(-1, $posts_id) 
-                            || $product_cats == "")  && !in_array($post->ID, $exclude_post_id ))
+                            if( ($load || in_array($post->ID, $posts_id) || in_array(0, $posts_id)) 
+                            && !in_array($post->ID, $exclude_post_id ))
                                 echo do_shortcode($content);     
-                        
                     });
                 }
             }
@@ -175,7 +177,7 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
             
                 <p>
                     <label for="uwc_type">
-                        <?php echo translate( 'Load woocommerce codes:', 'unlimited-woocommerce-codes' ) ?>
+                        <?php echo translate( 'Load WooCommerce codes', 'unlimited-woocommerce-codes' ) ?>:
                     </label>
                 </p>
                 <p> 
@@ -189,7 +191,7 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
                     </select>
                 <p>
                     <label for="uwc_zone_page_names">
-                        <?php echo translate( 'Woocommerce sections', 'unlimited-woocommerce-codes' ) ?>:
+                        <?php echo translate( 'Load in WooCommerce sections', 'unlimited-woocommerce-codes' ) ?>:
                     </label>
                 </p>
                 <p>
@@ -327,17 +329,19 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
                 </p>
                 <p>
                     <label for="uwc_product_categories">
-                        <?php echo translate( 'Product categories', 'unlimited-woocommerce-codes' ) ?>:
+                        <?php echo translate( 'Load in product categories', 'unlimited-woocommerce-codes' ) ?>:
                     </label>
                 </p>
                 <p>
                     <select multiple="multiple" id="uwc_product_categories" name="uwc_product_categories[]">
+                    <?php $cats = get_post_meta(get_the_ID(), "uwc_product_categories", true); ?>
 
+                        <option value="0" <?php if(in_array(0, $cats)) echo ' selected="selected" '; ?> >
+                            <?php echo translate( 'All', 'unlimited-codes' ) ?>
+                        </option>     
                     <?php
 
-                        $cats = get_post_meta(get_the_ID(), "uwc_product_categories", true);
-
-                          $taxonomy     = 'product_cat';
+                            $taxonomy     = 'product_cat';
                             $orderby      = 'name';  
                             $show_count   = 0;
                             $pad_counts   = 0;      
@@ -396,6 +400,8 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
             {
                 if(intval($categories))
                     $product_categories[] = intval($categories);
+                else if($categories == 0)
+                    $product_categories[] = 0;
                 else
                     $validate_product_categories = false;
             }
