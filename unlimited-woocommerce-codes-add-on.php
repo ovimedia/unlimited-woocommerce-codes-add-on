@@ -106,7 +106,7 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
             unset($columns["order"]);
             unset($columns["date"]);
             unset($columns["shortcode"]);
-            $columns["woosections"] = translate( 'Woocommerce sections', 'unlimited-woocommerce-codes' );
+            $columns["woosections"] = translate( 'WooCommerce sections', 'unlimited-woocommerce-codes' );
             $columns["woocategories"] = translate( 'Product categories', 'unlimited-woocommerce-codes' );
             $columns["date"]  = __( 'Date' );
             
@@ -163,10 +163,9 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
 
         public function uwc_init_metabox()
         {
-            add_meta_box( 'zone-woocode', translate( 'Woocommerce code options', 'unlimited-woocommerce-codes' ), 
+            add_meta_box( 'zone-woocode', translate( 'WooCommerce code options', 'unlimited-woocommerce-codes' ), 
                          array( $this, 'uwc_meta_options'), 'code', 'side', 'default' );
         }
-        
 
         public function uwc_meta_options( $post )
         {
@@ -189,12 +188,12 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
                             <?php echo translate( 'Yes', 'unlimited-woocommerce-codes' ) ?>
                         </option>
                     </select>
-                <p>
+                <p class="woooption">
                     <label for="uwc_zone_page_names">
                         <?php echo translate( 'Load in WooCommerce sections', 'unlimited-woocommerce-codes' ) ?>:
                     </label>
                 </p>
-                <p>
+                <p class="woooption">
                     <select multiple="multiple" id="uwc_zone_page_names" name="uwc_zone_page_names[]">
                         <?php
 
@@ -327,12 +326,12 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
                             ?>
                     </select>
                 </p>
-                <p>
+                <p class="woooption">
                     <label for="uwc_product_categories">
                         <?php echo translate( 'Load in product categories', 'unlimited-woocommerce-codes' ) ?>:
                     </label>
                 </p>
-                <p>
+                <p class="woooption">
                     <select multiple="multiple" id="uwc_product_categories" name="uwc_product_categories[]">
                     <?php $cats = get_post_meta(get_the_ID(), "uwc_product_categories", true); ?>
 
@@ -406,11 +405,16 @@ if ( ! class_exists( 'unlimited_woocommerce_codes' ) )
                     $validate_product_categories = false;
             }
 
-            if($validate_zone_pages )
+            if($validate_zone_pages && $_REQUEST["uwc_type"] == "woocommerce")
                 update_post_meta( $post_id, 'uwc_zone_page_names', $zone_pages);
+            else
+                update_post_meta( $post_id, 'uwc_zone_page_names', "");
 
-            if($validate_product_categories )    
+
+            if($validate_product_categories && $_REQUEST["uwc_type"] == "woocommerce")    
                 update_post_meta( $post_id, 'uwc_product_categories',  $product_categories);
+            else
+                update_post_meta( $post_id, 'uwc_product_categories', "");
         }            
     }
 }

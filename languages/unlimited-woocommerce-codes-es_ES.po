@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-05-27 11:31+0200\n"
+"PO-Revision-Date: 2018-05-27 18:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -30,23 +30,26 @@ msgstr "Finalizar compra"
 msgid "My Account"
 msgstr "Mi cuenta"
 
-msgid "Woocommerce sections"
-msgstr "Secciones Woocommerce"
+msgid "WooCommerce sections"
+msgstr "Secciones WooCommerce"
 
 msgid "Load in WooCommerce sections"
-msgstr "Cargar en estas secciones Woocommerce"
+msgstr "Cargar en secciones Woocommerce"
+
+msgid "Product categories"
+msgstr "Categorías de producto"
 
 msgid "Load in product categories"
 msgstr "Cargar en categorías de producto"
 
-msgid "Woocommerce code options"
-msgstr "Opciones de código woocommerce"
+msgid "WooCommerce code options"
+msgstr "Opciones de código WooCommerce"
 
-msgid "Load woocommerce codes:"
-msgstr "Cargar código de Woocommerce:"
+msgid "Load WooCommerce codes"
+msgstr "Cargar código de WooCommerce"
 
 msgid "No"
-msgstr "NO"
+msgstr "No"
 
 msgid "Yes"
 msgstr "Si"

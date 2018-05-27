@@ -11,6 +11,10 @@
     margin-top: 8px;
 }
 
+.meta_div_codes .woooption {
+    display: none;
+}
+
 .meta_div_codes p label {
     font-weight: bold;
 }
